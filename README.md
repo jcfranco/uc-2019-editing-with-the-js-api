@@ -1,6 +1,6 @@
 # [Editing with the ArcGIS API for JavaScript](https://userconference2019.schedule.esri.com/schedule/2035525088)
 
-[Preview presentation](https://jcfranco.github.io/jcfranco/uc-2019-editing-with-the-js-api/slides/#/)
+[Preview presentation](https://jcfranco.github.io/uc-2019-editing-with-the-js-api/slides/#/)
 
 To be presented at [Esri User Conference 2019](http://www.esri.com/events/uc).
 
