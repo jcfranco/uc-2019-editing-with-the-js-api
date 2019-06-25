@@ -1,4 +1,4 @@
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-1.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-1.png" data-background-size="cover" -->
 
 # Editing with the ArcGIS API for JavaScript
 
@@ -8,7 +8,7 @@
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-3.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
 ## Agenda
 
@@ -19,7 +19,7 @@
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-2.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-2.png" data-background-size="cover" -->
 
 ## Data in a feature service
 
@@ -28,7 +28,7 @@
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-2.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-2.png" data-background-size="cover" -->
 
 ## Edit your feature layer
 
@@ -42,7 +42,7 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-2.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-2.png" data-background-size="cover" -->
 
 ## Web editing in the browser
 
@@ -55,7 +55,7 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-4.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-4.png" data-background-size="cover" -->
 
 ## Editor widget
 
@@ -65,13 +65,13 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-4.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-4.png" data-background-size="cover" -->
 
 # Custom Workflows
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-5.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-5.png" data-background-size="cover" -->
 
 ## Form-based
 
@@ -104,7 +104,7 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-3.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
 # Geometry-based
 
@@ -123,7 +123,7 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-4.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-4.png" data-background-size="cover" -->
 
 ## Geometry-based Demos
 
@@ -136,7 +136,7 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-6.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-6.png" data-background-size="cover" -->
 
 ## Recap
 
@@ -154,7 +154,7 @@ ArcGIS API for JavaScript
 ---
 
 <!-- SURVEY SLIDE: -->
-<section data-markdown data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-rating.png">
+<section data-markdown data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-rating.png">
 
 ---
 
@@ -168,4 +168,4 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/devsummit/bg-esri.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-esri.png" data-background-size="cover" -->
