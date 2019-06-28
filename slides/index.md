@@ -65,13 +65,11 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-4.png" data-background-size="cover" -->
-
 # Custom Workflows
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-5.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
 ## Form-based
 
@@ -123,8 +121,6 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-4.png" data-background-size="cover" -->
-
 ## Geometry-based Demos
 
 * Sketch with applyEdits
@@ -136,7 +132,7 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-6.png" data-background-size="cover" -->
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
 ## Recap
 
@@ -154,7 +150,7 @@ ArcGIS API for JavaScript
 ---
 
 <!-- SURVEY SLIDE: -->
-<section data-markdown data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-rating.png">
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-5.png" data-background-size="cover" -->
 
 ---
 
@@ -168,4 +164,3 @@ ArcGIS API for JavaScript
 
 ---
 
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-esri.png" data-background-size="cover" -->
