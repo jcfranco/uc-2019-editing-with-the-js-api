@@ -158,7 +158,7 @@ ArcGIS API for JavaScript
 
 > 🤔 Where can I find the slides/source?
 
-👉 [bit.ly/editingds19](http://bit.ly/editinguc19) 👈
+👉 [bit.ly/editinguc19](http://bit.ly/editinguc19) 👈
 
 ---
 
