@@ -32,7 +32,7 @@
 
 ## Edit your feature layer
 
-<u>ArcGIS REST API</u>
+<a href="https://developers.arcgis.com/rest/services-reference/feature-service.htm">ArcGIS REST API<a>
 
 ArcGIS Online
 
@@ -61,8 +61,6 @@ ArcGIS API for JavaScript
 
 [<img src="./images/editor-in-action.gif" height="400" style="margin-left:10px; margin-right: 10px;"/>](../demos/basic-editing/)
 
-✨**Added in 4.11**✨
-
 ---
 
 # Custom Workflows
@@ -86,7 +84,7 @@ ArcGIS API for JavaScript
   * Field order
   * Label/description
   * Groups
-  * Visibility expression (✨Added in 4.11✨)
+  * Visibility expression
 
 ---
 
