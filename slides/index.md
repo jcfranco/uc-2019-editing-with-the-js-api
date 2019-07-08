@@ -8,6 +8,12 @@
 
 ---
 
+## **Slides and demos accessible via GitHub**
+
+👉 [bit.ly/editinguc19](http://bit.ly/editinguc19) 👈
+
+---
+
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
 ## Agenda
@@ -148,6 +154,11 @@ ArcGIS API for JavaScript
 ---
 
 <!-- SURVEY SLIDE: -->
+<!-- .slide: data-background="Images/alias_slide.png"> -->
+
+---
+
+<!-- SURVEY SLIDE: -->
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-5.png" data-background-size="cover" -->
 
 ---
@@ -160,5 +171,4 @@ ArcGIS API for JavaScript
 
 👉 [bit.ly/editinguc19](http://bit.ly/editinguc19) 👈
 
----
 
