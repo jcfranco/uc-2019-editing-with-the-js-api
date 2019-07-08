@@ -62,6 +62,7 @@
       MapView, SketchViewModel
     ) {
 
+      // Feature layer that edits will be saved to
       const polygonLayer = new FeatureLayer({
         url: "https://servicesdev1.arcgis.com/5uh3wwYLNzBuU0Eu/arcgis/rest/services/DevSummit_Polygons_Layer/FeatureServer/0",
         outFields: ["*"],
@@ -69,7 +70,7 @@
         id: "polygonLayer"
       });
 
-      // Used by SketchViewModel to display newly created graphics
+      // 2. Create new GLayer, used by SketchViewModel to display newly created graphics
       const gLayer = new GraphicsLayer();
 
       // Create the map; add both layers
@@ -82,9 +83,10 @@
         container: "viewDiv",
         map: map,
         zoom: 12,
-        center: [-77.615193, 43.151888]
+        center: [-117.161087, 32.715736]
       });
 
+      // 1. Create the SketchViewModel
       view.when(function(evt) {
         // Set up the view model
         const sketchVM = new SketchViewModel({
@@ -92,7 +94,7 @@
           view: view
         });
 
-        // After creation is finished, we need to update the FeatureLayer.
+        // 4. After creation is finished, we need to update the FeatureLayer.
         // We also want to remove the graphic from the GraphicsLayer
         // because the new feature will show up after a successful layer refresh.
         sketchVM.on("create", function(event) {
@@ -102,13 +104,14 @@
           }
         });
 
-        // Activate the 'polygon' tool on button click
+        // 3. Activate the 'polygon' tool on button click
         polygonBtn.onclick = function(){
           sketchVM.create("polygon");
+          // shortcut to focus the view so can start using tool right away
           view.focus();
         };
 
-        // Remove features when targetted by a ctrl+click combination
+        // 5. Remove features when targeted by a ctrl+click combination
         view.on("click", ["Control"], function(event) {
           // Check if any graphics are in the clicked location
           view.hitTest(event).then(function(response) {

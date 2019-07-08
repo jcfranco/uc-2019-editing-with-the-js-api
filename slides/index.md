@@ -116,23 +116,76 @@ ArcGIS API for JavaScript
 
 ---
 
-## [`Sketch`](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch.html)
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
-* Provides ability to manipulate geometries<!-- .element: class="fragment" data-fragment-index="1" -->
-* Configurable<!-- .element: class="fragment" data-fragment-index="2" -->
-  * Tool options (create and update)
-  * Internal view listener for activating update workflow
+## Sketching
+
+* <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch.html" target="_blank">`Sketch`</a> and <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch-SketchViewModel.html" target="_blank">`SketchViewModel`</a>
+
+* Provides ability to manipulate geometries
+* The widget provides out-of-the-box tools for creating and updating graphics
+  * point, polyline, polygon, rectangle and circle geometries
+* Keyboard shortcuts
 
 ---
 
-## Geometry-based Demos
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
-* Sketch with applyEdits
-* SketchViewModel with applyEdits
-* Sketch with custom tools
-* Sketch with custom snapping and validation
+## Editor or Sketch?
 
-<!-- add screenshot for geometry-based demo -->
+* Use `Sketch` in place of Editor for customized workflows, e.g.
+  * Create own custom tool that Editor does not yet have, e.g. `Cut`
+  * Updating multiple geometry types simultaneously
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
+
+
+## Sketch is configurable
+
+* Tool options (create and update)
+* Internal view listener for activating update workflows
+  * i.e. No need to write extra code to check if graphic passed to the layer exists, it's automatic
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
+
+
+### Demo: SketchViewModel with applyEdits
+Use case: Single polygon tool used to create and delete
+<a href="../demos/sketch-applyEdits-create-polygon/applyEdits-create-polygon.html" target="_blank">
+  <img style="float: center;" src="images/sketchVM-applyEdits.png">
+</a>
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
+
+
+### Demo: Sketch widget with applyEdits
+Use case: Updating multiple geometries at once
+<a href="../demos/sketch-applyEdits/applyEdits.html" target="_blank">
+  <img style="float: center;" src="images/sketch-widget-apply-edits.png">
+</a>
+
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
+
+### Demo: Sketch with custom tools
+Use case: Custom sketch tool functionality using GeometryEngine
+<a href="../demos/sketch-custom-tools/sketch-custom-tools.html" target="_blank">
+  <img style="float: center;" src="images/cut-tool.png">
+</a>
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
+
+## Demo: Sketch with custom snapping and validation
 
 ---
 

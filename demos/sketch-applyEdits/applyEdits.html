@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Sketch with applyEdits</title>
+  <title>Sketch widget with applyEdits</title>
   <style>
 
     html,
@@ -42,6 +42,7 @@
       // Used by Sketch to display newly created graphics
       const gLayer = new GraphicsLayer();
 
+      // Feature layers to save edits
       const pointLayer = new FeatureLayer({
         url: "https://servicesdev1.arcgis.com/5uh3wwYLNzBuU0Eu/arcgis/rest/services/DevSummitTestLayers/FeatureServer/0",
         outFields: ["*"],
@@ -63,7 +64,7 @@
         id: "polygonLayer"
       });
 
-      // Create the map; add only FeatureLayer
+      // 2. Create the map; add only the graphics layer
       const map = new Map({
         basemap: "gray-vector",
         layers: [gLayer]
@@ -73,7 +74,7 @@
         container: "viewDiv",
         map: map,
         zoom: 12,
-        center: [-71.016264, 42.370486]
+        center: [-117.161087, 32.715736]
       });
 
       view.when(function(evt) {
@@ -83,26 +84,27 @@
         // Associated FeatureLayers
         const featureLayers = [pointLayer, polylineLayer, polygonLayer];
 
-        // Add features from each layer to our GraphicsLayer.
+        // 3. Add features from each layer to our GraphicsLayer.
         // Sketch widget requires graphics to be on an associated GraphicsLayer
         // to qualify for updating (and deletion).
         featureLayers.forEach(function(layer) {
           addGraphicsToGraphicsLayer(layer);
         });
 
+        // 1. Create the Sketch widget 
         const sketch = new Sketch({
           layer: gLayer,
           view: view
         }, "sketch-container");
 
-        // After creating, updating or deleting a graphic, we need
-        // to update the associated FeatureLayer
+        // 5a. After creating, we need to update the associated feature layer
         sketch.on("create", function(event) {
           if (event.state === "complete") {
             updateFeatureLayer(event.tool, { addFeatures: [event.graphic] });
           }
         });
 
+        // 5b. Update or delete the graphic, update the associated feature layer
         sketch.on("update", function(event) {
           if (event.state === "complete") {
             const graphics = event.graphics;
@@ -126,7 +128,7 @@
         });
       });
 
-      // Identify the appropriate FeatureLayer to update
+      // 6. Identify the appropriate FeatureLayer to update
       // based on the Sketch tool used to create the graphic.
       // Circle and Rectangle tools are grouped together with Polygon
       function updateFeatureLayer(tool, edits) {
@@ -141,7 +143,7 @@
         }
       }
 
-      // Update the given layer with provided edits
+      // 7. Update the given layer with provided edits
       function applyEditsToLayer(layer, edits) {
         layer.applyEdits(edits);
       }
@@ -149,9 +151,9 @@
       function addGraphicsToGraphicsLayer(layer) {
         const query = layer.createQuery();
 
-        // Query the associated layer for Features to add to the GraphicsLayer
+        // 4. Query the associated layer for Features to add to the GraphicsLayer
         // We also want to update the features to use default symbology
-        // ... from the layer's renderer
+        // taken from the layer's renderer
         layer.queryFeatures(query).then(function(response) {
           response.features.forEach(function(feature) {
             feature.symbol = layer.renderer.symbol;

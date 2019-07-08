@@ -60,11 +60,12 @@
       const view = new MapView({
         container: "viewDiv",
         map: map,
-        zoom: 4,
-        center: [15, 65]
+        zoom: 12,
+        center: [-117.161087, 32.715736]
       });
 
-      // Stores state of the cut tool
+      // 1. Stores state of the cut tool.
+      // Tells whether the cut tool is active or not
       let cutActive = false;
 
       view.when((evt) => {
@@ -78,12 +79,14 @@
           view: view
         }, "sketch-container");
 
+        // 2. Create event listener
         sketch.on("create", (event) => {
-          // Cut operation finished
+          // Cut operation finished and cut is active
           if (event.state === "complete" && cutActive) {
+            // once finished, get the graphic from the cut tool
             const cutGraphic = event.graphic;
 
-            // Update cut tool state
+            // Update cut tool state, i.e. "we're not cutting anymore"
             cutActive = false;
 
             // Remove the cut graphic from view
@@ -98,10 +101,13 @@
             // the cut graphic.
             // Only valid cuts are acknowleged
             layerGraphics.forEach((graphic) => {
-              // Get cut geometries
+              // Get cut geometries by passing in the graphic's geometry candidate 
+              // and the geometry of the cut graphics
               const cutGeometries = geometryEngine.cut(graphic.geometry, cutGraphic.geometry);
 
                 // Found valid geometries
+                // Check the array, make sure that whatever geometry that is cut has valid
+                // resulting geometries
                 if (cutGeometries.length) {
                   // Create new graphics from the geometries
                   const graphics = cutGeometries.map((geometry) =>
@@ -120,11 +126,13 @@
 
         document.getElementById("cutBtn").onclick = () => {
           cutActive = true;
+          // Use the sketch widget itself to bring in the polyline tool
           sketch.create("polyline");
           view.focus();
         };
 
         document.getElementById("flipBtn").onclick = () => {
+          // This is only going to work if the tool is active
           const tool = sketch.activeTool;
 
           // Check if an update operation is active
@@ -138,9 +146,9 @@
             });
 
             // Reactivate current workflow to sync Sketch UI
+            // Call update on the graphics using the tool that was just used
             sketch.update(graphics, { tool: sketch.activeTool });
           }
-
           view.focus();
         };
       });
