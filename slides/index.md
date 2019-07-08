@@ -171,4 +171,12 @@ ArcGIS API for JavaScript
 
 👉 [bit.ly/editinguc19](http://bit.ly/editinguc19) 👈
 
+---
 
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-4.png" data-background-size="cover" -->
+
+## Thank You!
+
+> Ideas for next User Conference related to web development 💡
+>
+> `jsapi_pm@esri.com`
