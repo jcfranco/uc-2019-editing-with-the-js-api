@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Sketch - custom cut tool</title>
-  <style>
 
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Sketch - custom tools</title>
+  <style>
     html,
     body,
     #viewDiv {
@@ -15,6 +15,7 @@
       padding: 0;
       width: 100%;
     }
+
     .action-button {
       background-color: white;
       border: none;
@@ -32,7 +33,7 @@
     }
   </style>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/css/main.css" />
   <script src="https://js.arcgis.com/4.12/"></script>
 
   <script>
@@ -45,10 +46,7 @@
       "esri/widgets/Sketch",
 
       "dojo/domReady!"
-    ], function(
-      Graphic, Map, geometryEngine, GraphicsLayer, MapView, Sketch
-    ) {
-
+    ], function (Graphic, Map, geometryEngine, GraphicsLayer, MapView, Sketch) {
       const layer = new GraphicsLayer();
 
       // Create the map; add GraphicsLayer
@@ -64,54 +62,90 @@
         center: [-117.161087, 32.715736]
       });
 
-      // 1. Stores state of the cut tool.
-      // Tells whether the cut tool is active or not
+      // 1. Stores state of the current active tool (cut or select).
+      // Tells whether a tool is active or not
       let cutActive = false;
+      let selectActive = false;
 
       view.when((evt) => {
-
         // Add containers to view
         view.ui.add("sketch-container", "top-right");
-        view.ui.add("cut-container", "top-right");
+        view.ui.add("custom-tool-container", "top-right");
 
         const sketch = new Sketch({
           layer: layer,
-          view: view
-        }, "sketch-container");
+          view: view,
+          container: "sketch-container"
+        });
 
         // 2. Create event listener
         sketch.on("create", (event) => {
-          // Cut operation finished and cut is active
-          if (event.state === "complete" && cutActive) {
-            // once finished, get the graphic from the cut tool
-            const cutGraphic = event.graphic;
+          // If Sketch operation is finished
+          if (event.state === "complete") {
+            //  If select tool is active
+            if (selectActive) {
+              // Once finished, store the graphic used for selection
+              const selectGraphic = event.graphic;
 
-            // Update cut tool state, i.e. "we're not cutting anymore"
-            cutActive = false;
+              // Select tool state
+              selectActive = false;
 
-            // Remove the cut graphic from view
-            layer.remove(cutGraphic);
+              // Remove the select graphic from view
+              layer.remove(selectGraphic);
 
-            // Shallow clone for preserving original geometries
-            // in the following loop.
-            const layerGraphics = layer.graphics.items.slice(0);
+              // Use geometry engine to filter graphics that
+              // touch or exist within the select graphic
+              const filteredGraphics = layer.graphics.filter((graphic) => {
+                const overlaps = !!geometryEngine.overlaps(
+                  selectGraphic.geometry,
+                  graphic.geometry
+                );
+                const intersects = !!geometryEngine.intersects(
+                  selectGraphic.geometry,
+                  graphic.geometry
+                );
 
-            // Loop through all graphics on the GraphicsLayer and
-            // attempt to cut each graphic using the geometry of
-            // the cut graphic.
-            // Only valid cuts are acknowleged
-            layerGraphics.forEach((graphic) => {
-              // Get cut geometries by passing in the graphic's geometry candidate 
-              // and the geometry of the cut graphics
-              const cutGeometries = geometryEngine.cut(graphic.geometry, cutGraphic.geometry);
+                return overlaps || intersects;
+              });
+
+              // Pass filtered graphics back to sketch widget
+              // for bulk update
+              sketch.update(filteredGraphics.items);
+            }
+            // Cut tool is active
+            else if (cutActive) {
+              // Once finished, store the graphic used to cut
+              const cutGraphic = event.graphic;
+
+              // Update cut tool state, i.e. "we're not cutting anymore"
+              cutActive = false;
+
+              // Remove the cut graphic from view
+              layer.remove(cutGraphic);
+
+              // Shallow clone for preserving original geometries
+              // in the following loop.
+              const layerGraphics = layer.graphics.items.slice(0);
+
+              // Loop through all graphics on the GraphicsLayer and
+              // attempt to cut each graphic using the geometry of
+              // the cut graphic.
+              // Only valid cuts are acknowleged
+              layerGraphics.forEach((graphic) => {
+                // Get cut geometries by passing in the graphic's geometry candidate
+                // and the geometry of the cut graphics
+                const cutGeometries = geometryEngine.cut(graphic.geometry, cutGraphic.geometry);
 
                 // Found valid geometries
                 // Check the array, make sure that whatever geometry that is cut has valid
                 // resulting geometries
                 if (cutGeometries.length) {
                   // Create new graphics from the geometries
-                  const graphics = cutGeometries.map((geometry) =>
-                    new Graphic({ geometry, symbol: graphic.symbol })
+                  const graphics = cutGeometries.map(
+                    (geometry) => new Graphic({
+                      geometry,
+                      symbol: graphic.symbol
+                    })
                   );
 
                   // Remove the graphic that was cut from the view
@@ -120,9 +154,17 @@
                   // Add the newly created graphics to the view
                   layer.addMany(graphics);
                 }
-            });
+              });
+            }
           }
         });
+
+        document.getElementById("selectBtn").onclick = () => {
+          selectActive = true;
+          // Use the sketch widget itself to bring in the rectangle tool
+          sketch.create("rectangle");
+          view.focus();
+        };
 
         document.getElementById("cutBtn").onclick = () => {
           cutActive = true;
@@ -147,7 +189,9 @@
 
             // Reactivate current workflow to sync Sketch UI
             // Call update on the graphics using the tool that was just used
-            sketch.update(graphics, { tool: sketch.activeTool });
+            sketch.update(graphics, {
+              tool: sketch.activeTool
+            });
           }
           view.focus();
         };
@@ -159,10 +203,12 @@
 <body>
   <div id="viewDiv">
     <div id="sketch-container"></div>
-    <div id="cut-container">
+    <div id="custom-tool-container">
+      <button class="action-button esri-icon-sketch-rectangle" id="selectBtn" type="button" title="Select"></button>
       <button class="action-button esri-icon-edit" id="cutBtn" type="button" title="Cut"></button>
       <button class="action-button esri-icon-refresh" id="flipBtn" type="button" title="Flip"></button>
     </div>
   </div>
 </body>
+
 </html>

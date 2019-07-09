@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Sketch - validation and snapping</title>
   <style>
-
     html,
     body,
     #viewDiv {
@@ -15,15 +15,13 @@
       padding: 0;
       width: 100%;
     }
-
   </style>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/css/main.css" />
   <script src="https://js.arcgis.com/4.12/"></script>
 
   <script>
     require([
-
       "esri/Graphic",
       "esri/Map",
 
@@ -34,16 +32,26 @@
 
       "esri/layers/GraphicsLayer",
       "esri/views/MapView",
-      "esri/symbols/SimpleMarkerSymbol",
+      "esri/widgets/Home",
       "esri/widgets/Sketch/SketchViewModel",
 
       "dojo/domReady!"
-    ], function(
-      Graphic, Map,
-      GeometryEngine, Point, Polygon, Polyline,
-      GraphicsLayer, MapView, SimpleMarkerSymbol, SketchViewModel
+    ], function (
+      Graphic,
+      Map,
+      GeometryEngine,
+      Point,
+      Polygon,
+      Polyline,
+      GraphicsLayer,
+      MapView,
+      Home,
+      SketchViewModel
     ) {
-
+      // 1. Create two GraphicsLayers, one for 
+      // Remember, Any graphics assigned to the GraphicsLayers assigned to Sketch
+      // are candidates for updating. We don't want all the graphics to be updated
+      // in this case. 
       const backgroundGraphicsLayer = new GraphicsLayer();
       const activeGraphicsLayer = new GraphicsLayer();
 
@@ -55,44 +63,49 @@
       const view = new MapView({
         container: "viewDiv",
         map: map,
-        zoom: 12,
-        center: [-117.161087, 32.715736]
+        zoom: 13,
+        center: [-116.5, 33.826]
       });
 
+      // Symbology unique to this app
       const pointSymbol = {
         type: "simple-marker",
-        color: [ 0, 150, 0, 0.2 ],
+        style: "square",
         outline: {
-          color: [ 255, 255, 255 ],
-          width: 2
-        }
-      }
+          width: 2,
+          color: [255, 255, 255, 1]
+        },
+        angle: 45,
+        size: 25,
+        color: [76, 230, 0, 0.25]
+      };
 
-      const lineSymbol = {
+      const snapLineSymbol = {
         type: "simple-line",
-        color: [ 255, 255, 255 ],
+        style: "dash",
+        color: [255, 255, 0, 0.5],
         width: 2
-      }
+      };
 
-      const greenFill = {
+      const greenFillSymbol = {
         type: "simple-fill",
-        color: [ 0, 150, 0, 0.2 ],
+        color: [0, 150, 0, 0.2],
         outline: {
-          color: [ 255, 255, 255 ],
+          color: [255, 255, 255],
           width: 2
         }
       };
 
-      const greyFill = {
+      const containerSymbol = {
         type: "simple-fill",
-        color: [ 150, 150, 150, 0 ],
+        color: [150, 0, 0, 0],
         outline: {
-          color: [ 255, 255, 255 ],
+          color: [255, 255, 255],
           width: 2
         }
       };
 
-      const dashedFill = {
+      const yellowDashedSymbol = {
         type: "simple-fill",
         color: [0, 0, 0, 0],
         outline: {
@@ -102,82 +115,80 @@
         }
       };
 
-      view.when(function(evt) {
+      // Add a home button to the top left corner of the view
+      view.ui.add(new Home({
+        view: view
+      }), "top-left");
 
+      // 2. When view is ready, we're going to create these graphics on the client
+
+      view.when(function (evt) {
         const snapLine = new Polyline({
           paths: [
-            [-12972939.965299219, 4009685.2585294326],
-            [-12974526.033636134, 4008290.2827632297],
-            [-12975328.622433126, 4006876.197739956],
-            [-12975615.261289196, 4005137.2553464705],
-            [-12975309.513176056, 4003283.6574105574],
-            [-12974201.176265921, 4001449.168731716],
-            [-12972806.200499719, 4000340.8318215823],
-            [-12970895.274792593, 3999691.1170811593],
-            [-12968391.962116256, 3999958.6466801567],
-            [-12966767.675265199, 4000837.672505435],
-            [-12965563.792069709, 4002270.8667857805],
-            [-12964799.421786858, 4004239.120264121],
-            [-12965009.62361464, 4006837.9792258134],
-            [-12966175.28829599, 4008787.123447083],
-            [-12967990.667717759, 4010067.4436708577],
-            [-12970455.761879953, 4010526.0658405684],
-            [-12972901.746785076, 4009685.2585294326]
+            [-12973794.86250256, 4007984.534650089],
+            [-12969380.624119097, 4007984.534650089],
+            [-12969342.405604955, 4007783.887450841],
+            [-12969399.733376168, 4007554.576365986],
+            [-12969409.288004704, 4007162.8365960247],
+            [-12969409.288004704, 4006895.306997027],
+            [-12969093.985263027, 4006312.4746563532],
+            [-12968654.472350389, 4005624.5414017877],
+            [-12968176.740923608, 4005013.045175507],
+            [-12967937.875210216, 4004353.7758065485],
+            [-12967928.32058168, 4004114.9100931576],
+            [-12969915.683317093, 4004114.9100931576],
+            [-12969915.683317093, 4005079.9275752567],
+            [-12973804.417131096, 4005079.9275752567],
+            [-12973794.86250256, 4007984.534650089]
           ],
           spatialReference: view.spatialReference
         });
 
         // Shares a vertex with the snapLine
         const snapPoint = new Point({
-          x: -12972939.965299219,
-          y: 4009685.2585294326,
+          x: -12973794.86250256,
+          y: 4007984.534650089,
           spatialReference: view.spatialReference
         });
 
         const container = new Polygon({
           rings: [
-            [-12974179.678351752, 4007036.2377679716],
-            [-12971857.90361753, 4007036.2377679716],
-            [-12971857.90361753, 4004752.681547892],
-            [-12974179.678351752, 4004752.681547892],
-            [-12974179.678351752, 4007036.2377679716]
+            [-12969007.99360622, 4007984.5346501167],
+            [-12964063.79001902, 4007971.874097367],
+            [-12964049.141396224, 4004124.46472172],
+            [-12967498.36229759, 4004124.4647217207],
+            [-12969007.99360622, 4007984.5346501167]
           ],
           spatialReference: view.spatialReference
         });
 
         const insidePolygon = new Polygon({
           rings: [
-            [-12973644.619153742, 4006615.834112392],
-            [-12973219.438183894, 4006405.632284602],
-            [-12972689.156300152, 4006711.380397751],
-            [-12972450.290586755, 4005712.9217157494],
-            [-12973291.097897913, 4005306.850002974],
-            [-12973988.585781034, 4006037.77908597],
-            [-12973644.619153742, 4006615.834112392]
+            [-12966626.320351271, 4005438.982569812],
+            [-12965775.958411599, 4005438.982569812],
+            [-12965775.958411599, 4004645.9484013543],
+            [-12966626.320351271, 4004645.9484013543],
+            [-12966626.320351271, 4005438.982569812]
           ],
           spatialReference: view.spatialReference
         });
 
         const outsidePolygon = new Polygon({
           rings: [
-            [-12970737.623421688, 4004697.7424338656],
-            [-12970670.74102189, 4003742.279580304],
-            [-12969294.874512829, 4003780.4980944446],
-            [-12969352.202284008, 4003197.6657537716],
-            [-12969743.942054003, 4002366.4130711714],
-            [-12971167.581705809, 4002251.7575287437],
-            [-12972318.914444301, 4002782.0394124733],
-            [-12972228.14547325, 4004095.8008361217],
-            [-12970737.623421688, 4004697.7424338656]
+            [-12966616.765722735, 4002649.0310374065],
+            [-12965145.352928247, 4003833.804975825],
+            [-12965145.352928247, 4002620.3671517996],
+            [-12966616.765722735, 4002649.0310374065]
           ],
           spatialReference: view.spatialReference
         });
 
-        const lineGraphic = new Graphic(snapLine, lineSymbol);
+        // 3. Create graphics based on the above defined symbols and geometries
+        const lineGraphic = new Graphic(snapLine, snapLineSymbol);
         const snapGraphic = new Graphic(snapPoint, pointSymbol);
-        const containerGraphic = new Graphic(container, greyFill);
-        const insideGraphic = new Graphic(insidePolygon, greenFill);
-        const outsideGraphic = new Graphic(outsidePolygon, greenFill);
+        const containerGraphic = new Graphic(container, containerSymbol);
+        const insideGraphic = new Graphic(insidePolygon, greenFillSymbol);
+        const outsideGraphic = new Graphic(outsidePolygon, greenFillSymbol);
 
         // The clone will represent the last 'valid' geometry
         // By using a clone, we avoid directly modifying the geometry
@@ -227,9 +238,8 @@
               }
 
               // Update symbol of the original graphic to indicate movement
-              graphic.symbol = dashedFill;
-            }
-            else if (toolInfo.type === "move") {
+              graphic.symbol = yellowDashedSymbol;
+            } else if (toolInfo.type === "move") {
               // Snapping (graphic snaps to the associated polyline)
               if (graphic === snapGraphic) {
                 const nearest = GeometryEngine.nearestCoordinate(snapLine, graphic.geometry);
@@ -249,14 +259,13 @@
               else if (graphic === outsideGraphic) {
                 // Use geometry engine to see if the graphic touches, or is inside the boundary graphic
                 const contains = GeometryEngine.contains(container, graphic.geometry),
-                      overlaps = GeometryEngine.overlaps(container, graphic.geometry);
+                  overlaps = GeometryEngine.overlaps(container, graphic.geometry);
 
                 if (!contains && !overlaps) {
                   clone.geometry = graphic.geometry;
                 }
               }
-            }
-            else if (toolInfo.type === "move-stop") {
+            } else if (toolInfo.type === "move-stop") {
               // Snapping
               if (graphic === snapGraphic) {
                 graphic.visible = true;
@@ -273,11 +282,10 @@
                   if (contains) {
                     clone.geometry = graphic.geometry;
                   }
-                }
-                else if (graphic === outsideGraphic) {
+                } else if (graphic === outsideGraphic) {
                   // Use geometry engine to see if the graphic touches, or is inside the boundary graphic
                   const contains = GeometryEngine.contains(container, graphic.geometry),
-                        overlaps = GeometryEngine.overlaps(container, graphic.geometry);
+                    overlaps = GeometryEngine.overlaps(container, graphic.geometry);
 
                   // Update the clone, if geometry is valid
                   if (!contains && !overlaps) {
@@ -295,14 +303,13 @@
             }
           }
         });
-
       });
     });
-
   </script>
 </head>
 
 <body>
   <div id="viewDiv"></div>
 </body>
+
 </html>

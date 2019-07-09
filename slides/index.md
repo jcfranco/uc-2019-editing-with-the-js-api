@@ -3,8 +3,8 @@
 # Editing with the ArcGIS API for JavaScript
 
 #### Bjorn Svensson
-#### Heather Gonzago
 #### JC Franco
+#### Heather Gonzago
 
 ---
 
@@ -20,7 +20,7 @@
 
 * Web editing
 * Editor widget
-* Custom workflows
+* Different workflows
 * Q&A
 
 ---
@@ -69,7 +69,7 @@ ArcGIS API for JavaScript
 
 ---
 
-# Custom Workflows
+# Different Workflows
 
 ---
 
@@ -146,14 +146,15 @@ ArcGIS API for JavaScript
 
 * Tool options (create and update)
 * Internal view listener for activating update workflows
-  * i.e. No need to write extra code to check if graphic passed to the layer exists, it's automatic
+  * Any graphics assigned to the GraphicsLayers assigned to Sketch are candidates for updating
+  * No need to write extra code to check if graphic passed to the layer exists, it's automatic
 
 ---
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
 
-### Demo: SketchViewModel with applyEdits
+### SketchViewModel with applyEdits
 Use case: Single polygon tool used to create and delete
 <a href="../demos/sketch-applyEdits-create-polygon/applyEdits-create-polygon.html" target="_blank">
   <img style="float: center;" src="images/sketchVM-applyEdits.png">
@@ -164,7 +165,7 @@ Use case: Single polygon tool used to create and delete
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
 
-### Demo: Sketch widget with applyEdits
+### Sketch widget with applyEdits
 Use case: Updating multiple geometries at once
 <a href="../demos/sketch-applyEdits/applyEdits.html" target="_blank">
   <img style="float: center;" src="images/sketch-widget-apply-edits.png">
@@ -175,7 +176,7 @@ Use case: Updating multiple geometries at once
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
-### Demo: Sketch with custom tools
+### Sketch with custom tools
 Use case: Custom sketch tool functionality using GeometryEngine
 <a href="../demos/sketch-custom-tools/sketch-custom-tools.html" target="_blank">
   <img style="float: center;" src="images/cut-tool.png">
@@ -185,7 +186,11 @@ Use case: Custom sketch tool functionality using GeometryEngine
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
-## Demo: Sketch with custom snapping and validation
+### Sketch with custom snapping and validation
+Use case: Customize with snapping and validation
+<a href="../demos/sketch-validation/sketch-validation.html" target="_blank">
+  <img style="float: center;" src="images/sketch-snapping.png">
+</a>
 
 ---
 
@@ -195,7 +200,7 @@ Use case: Custom sketch tool functionality using GeometryEngine
 
 * Web editing
 * Editor widgets
-* Custom workflows
+* Different workflows
 
 ---
 
@@ -229,7 +234,3 @@ Use case: Custom sketch tool functionality using GeometryEngine
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-4.png" data-background-size="cover" -->
 
 ## Thank You!
-
-> Ideas for next User Conference related to web development 💡
->
-> `jsapi_pm@esri.com`
