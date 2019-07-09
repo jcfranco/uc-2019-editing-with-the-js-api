@@ -100,7 +100,9 @@ ArcGIS API for JavaScript
 
 ---
 
-## Advanced `FeatureForm` Demo
+## Putting it all together
+
+Use case: Report Bike Theft
 
 [<img src="images/form-based-editing.gif" height="400" style="margin-left:10px; margin-right: 10px;"/>](https://jcfranco.github.io/dev-summit-2019-plenary-demos/form-based-editing/)
 
