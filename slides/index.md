@@ -196,6 +196,16 @@ Use case: Customize with snapping and validation
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
+### FeatureLayer without feature service
+
+Use [FeatureLayer.source](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#source) (<i>instead of FeatureLayer.url</i>) for an array of client-side features.
+
+[Demo](https://codepen.io/bsvensson/pen/KYQOWa)
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
+
 ## Recap
 
 * Web editing
