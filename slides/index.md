@@ -2,9 +2,13 @@
 
 # Editing with the ArcGIS API for JavaScript
 
-#### Bjorn Svensson
-#### JC Franco
-#### Heather Gonzago
+##### Bjorn Svensson, Heather Gonzago, JC Franco
+
+&nbsp;
+
+👉 <small>Slides & demos: https://bit.ly/editinguc19 </small>👈
+
+&nbsp;
 
 ---
 
