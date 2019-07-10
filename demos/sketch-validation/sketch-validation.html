@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <title>Sketch - validation and snapping</title>
+  <title>SketchViewModel - validation and snapping</title>
   <style>
     html,
     body,
@@ -48,7 +48,7 @@
       Home,
       SketchViewModel
     ) {
-      // 1. Create two GraphicsLayers, one for 
+      // 1. Create two GraphicsLayers, one for updating, one that isn't
       // Remember, Any graphics assigned to the GraphicsLayers assigned to Sketch
       // are candidates for updating. We don't want all the graphics to be updated
       // in this case. 
@@ -220,10 +220,12 @@
         });
 
         sketchVM.on("update", (event) => {
+          // 5. validation
           if (event.toolEventInfo) {
             // Save reference the graphic being moved
             const toolInfo = event.toolEventInfo;
-            const graphic = toolInfo.mover;
+            // toolInfo is UpdateToolEventInfo > MoveEventInfo which has the mover property
+            const graphic = toolInfo.mover; // the instance of the graphic being moved
 
             if (toolInfo.type === "move-start") {
               // Clone the graphic being moved and add it to the GraphicsLayer
@@ -240,7 +242,7 @@
               // Update symbol of the original graphic to indicate movement
               graphic.symbol = yellowDashedSymbol;
             } else if (toolInfo.type === "move") {
-              // Snapping (graphic snaps to the associated polyline)
+              // 4. Snapping (graphic snaps to the associated polyline)
               if (graphic === snapGraphic) {
                 const nearest = GeometryEngine.nearestCoordinate(snapLine, graphic.geometry);
 
@@ -248,7 +250,8 @@
               }
               // Collision (graphic must be inside the container)
               else if (graphic === insideGraphic) {
-                const contains = GeometryEngine.contains(container, graphic.geometry);
+               // 5. validation
+               const contains = GeometryEngine.contains(container, graphic.geometry);
 
                 // Update the clone if geometry is valid
                 if (contains) {

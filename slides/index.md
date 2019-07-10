@@ -118,14 +118,14 @@ Use case: Report Bike Theft
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
-## Sketching
+### <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch.html" target="_blank">`Sketch`</a> and <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch-SketchViewModel.html" target="_blank">`SketchViewModel`</a>
 
-* <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch.html" target="_blank">`Sketch`</a> and <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch-SketchViewModel.html" target="_blank">`SketchViewModel`</a>
 
 * Provides ability to manipulate geometries
 * The widget provides out-of-the-box tools for creating and updating graphics
   * point, polyline, polygon, rectangle and circle geometries
 * Keyboard shortcuts
+* Works with with graphics stored in its associated `layer` (`GraphicsLayer`) property.
 
 ---
 
@@ -136,18 +136,7 @@ Use case: Report Bike Theft
 * Use `Sketch` in place of Editor for customized workflows, e.g.
   * Create own custom tool that Editor does not yet have, e.g. `Cut`
   * Updating multiple geometry types simultaneously
-
----
-
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
-
-
-## Sketch is configurable
-
-* Tool options (create and update)
-* Internal view listener for activating update workflows
-  * Any graphics assigned to the GraphicsLayers assigned to Sketch are candidates for updating
-  * No need to write extra code to check if graphic passed to the layer exists, it's automatic
+  * Configurable <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Sketch.html#CreateToolEventInfo" target="_blank">tool options (create and update)</a>
 
 ---
 
@@ -186,7 +175,7 @@ Use case: Custom sketch tool functionality using GeometryEngine
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2019/uc/bg-3.png" data-background-size="cover" -->
 
-### Sketch with custom snapping and validation
+### SketchVM with custom snapping and validation
 Use case: Customize with snapping and validation
 <a href="../demos/sketch-validation/sketch-validation.html" target="_blank">
   <img style="float: center;" src="images/sketch-snapping.png">
@@ -215,7 +204,7 @@ Use [FeatureLayer.source](https://developers.arcgis.com/javascript/latest/api-re
 ---
 
 <!-- SURVEY SLIDE: -->
-<!-- .slide: data-background="Images/alias_slide.png"> -->
+<!-- .slide: data-background="images/alias_slide.png"> -->
 
 ---
 

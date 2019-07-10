@@ -78,7 +78,7 @@
           container: "sketch-container"
         });
 
-        // 2. Create event listener
+        // 1. Create event listener
         sketch.on("create", (event) => {
           // If Sketch operation is finished
           if (event.state === "complete") {
@@ -93,7 +93,7 @@
               // Remove the select graphic from view
               layer.remove(selectGraphic);
 
-              // Use geometry engine to filter graphics that
+              // 4. Use geometry engine to filter graphics that
               // touch or exist within the select graphic
               const filteredGraphics = layer.graphics.filter((graphic) => {
                 const overlaps = !!geometryEngine.overlaps(
@@ -127,7 +127,7 @@
               // in the following loop.
               const layerGraphics = layer.graphics.items.slice(0);
 
-              // Loop through all graphics on the GraphicsLayer and
+              // 2.  Loop through all graphics on the GraphicsLayer and
               // attempt to cut each graphic using the geometry of
               // the cut graphic.
               // Only valid cuts are acknowleged
@@ -136,7 +136,7 @@
                 // and the geometry of the cut graphics
                 const cutGeometries = geometryEngine.cut(graphic.geometry, cutGraphic.geometry);
 
-                // Found valid geometries
+                // 3. Found valid geometries
                 // Check the array, make sure that whatever geometry that is cut has valid
                 // resulting geometries
                 if (cutGeometries.length) {
@@ -177,12 +177,12 @@
           // This is only going to work if the tool is active
           const tool = sketch.activeTool;
 
-          // Check if an update operation is active
+         3. // Check if an update operation is active
           if (tool === "transform" || tool === "reshape" || tool === "move") {
             // Shallow clone graphics currently being updated
             const graphics = sketch.updateGraphics.items.slice(0);
 
-            // Update the geometry of each graphic individually
+            // 5. Update the geometry of each graphic individually
             graphics.forEach((graphic) => {
               graphic.geometry = geometryEngine.flipVertical(graphic.geometry);
             });
