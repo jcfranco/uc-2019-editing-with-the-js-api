@@ -23,7 +23,7 @@ fieldConfig: [
   { name: "LOCATION", label: "Location" },
   { name: "DATE_OF_EN", label: "Date of Encounter" },
   { name: "Verified" },
-  { name: "Reviewer" }
+  { name: "Reviewer" },
   { name: "InteralID", label: "Internal ID" } // 'fix' typo :)
 ]
 ```
