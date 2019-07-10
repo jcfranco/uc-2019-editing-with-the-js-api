@@ -204,13 +204,6 @@ Use case: Customize with snapping and validation
 
 ---
 
-## Additional Resources
-
-- [JavaScript API SDK](https://developers.arcgis.com/javascript/)
-- [Arcade - expression language](https://developers.arcgis.com/javascript/latest/guide/arcade/index.html)
-
----
-
 <!-- SURVEY SLIDE: -->
 <!-- .slide: data-background="Images/alias_slide.png"> -->
 
@@ -223,11 +216,9 @@ Use case: Customize with snapping and validation
 
 ## Questions?
 
-##### For example
+http://bit.ly/editinguc19
 
-> 🤔 Where can I find the slides/source?
-
-👉 [bit.ly/editinguc19](http://bit.ly/editinguc19) 👈
+https://developers.arcgis.com/javascript/
 
 ---
 
